@@ -3,7 +3,7 @@
 </p>
 
 # Metrics for object detection
-  
+
 The motivation of this project is the lack of consensus used by different works and implementations concerning the **evaluation metrics of the object detection problem**. Although on-line competitions use their own metrics to evaluate the task of object detection, just some of them offer reference code snippets to calculate the accuracy of the detected objects.  
 Researchers who want to evaluate their work using different datasets than those offered by the competitions, need to implement their own version of the metrics. Sometimes a wrong or different implementation can create different and biased results. Ideally, in order to have trustworthy benchmarking among different approaches, it is necessary to have a flexible implementation that can be used by everyone regardless the dataset used.  
 
@@ -50,6 +50,7 @@ IOU is given by the overlapping area between the predicted bounding box and the 
 The image below illustrates the IOU between a ground truth bounding box (in green) and a detected bounding box (in red).
 
 <!--- IOU --->
+
 <p align="center">
 <img src="https://github.com/rafaelpadilla/Object-Detection-Metrics/blob/master/aux_images/iou.png" align="center"/></p>
 
@@ -122,7 +123,7 @@ Instead of interpolating only in the 11 equally spaced points, you could interpo
 <img src="http://latex.codecogs.com/gif.latex?%5Csum_%7Br%3D0%7D%5E%7B1%7D%20%5Cleft%20%28%20r_%7Bn&plus;1%7D%20-%20r_n%5Cright%20%29%20%5Crho_%7Binterp%7D%5Cleft%20%28%20r_%7Bn&plus;1%7D%20%5Cright%20%29">
 </p>
 
- 
+
 with
 
 <p align="center"> 
@@ -140,11 +141,11 @@ To make things more clear, we provided an example comparing both interpolations.
 #### An ilustrated example 
 
 An example helps us understand better the concept of the interpolated average precision. Consider the detections below:
-  
+
 <!--- Image samples 1 --->
 <p align="center">
 <img src="https://github.com/rafaelpadilla/Object-Detection-Metrics/blob/master/aux_images/samples_1_v2.png" align="center"/></p>
-  
+
 There are 7 images with 15 ground truth objects representented by the green bounding boxes and 24 detected objects represented by the red bounding boxes. Each detected object has a confidence level and is identified by a letter (A,B,...,Y).  
 
 The following table shows the bounding boxes with their corresponding confidences. The last column identifies the detections as TP or FP. In this example a TP is considered if IOU ![](http://latex.codecogs.com/gif.latex?%5Cgeq) 30%, otherwise it is a FP. By looking at the images above we can roughly tell if the detections are TP or FP.
@@ -154,6 +155,7 @@ The following table shows the bounding boxes with their corresponding confidence
 <img src="https://github.com/rafaelpadilla/Object-Detection-Metrics/blob/master/aux_images/table_1_v2.png" align="center"/></p>
 
 <!---
+
 | Images | Detections | Confidences | TP or FP |
 |:------:|:----------:|:-----------:|:--------:|
 | Image 1 | A | 88% | FP |
@@ -193,20 +195,20 @@ The Precision x Recall curve is plotted by calculating the precision and recall 
 <!---
 | Images | Detections | Confidences |  TP | FP | Acc TP | Acc FP | Precision | Recall |
 |:------:|:----------:|:-----------:|:---:|:--:|:------:|:------:|:---------:|:------:|
-| Image 5 |	R	| 95% | 1 | 0 | 1 | 0 | 1       | 0.0666 |
-| Image 7 |	Y	| 95% | 0 | 1 | 1 | 1 | 0.5     | 0.6666 |
-| Image 3 |	J	| 91% | 1 | 0 | 2 | 1 | 0.6666  | 0.1333 |
-| Image 1 | A | 88% | 0 | 1 | 2 | 2 | 0.5     | 0.1333 |
-| Image 6 |	U	| 84% | 0 | 1 | 2 | 3 | 0.4     | 0.1333 |
-| Image 1 |	C	| 80% | 0 | 1 | 2 | 4 | 0.3333  | 0.1333 |
-| Image 4 |	M	| 78% | 0 | 1 | 2 | 5 | 0.2857  | 0.1333 |
-| Image 2 |	F	| 74% | 0 | 1 | 2 | 6 | 0.25    | 0.1333 |
-| Image 2 |	D	| 71% | 0 | 1 | 2 | 7 | 0.2222  | 0.1333 |
-| Image 1 | B | 70% | 1 | 0 | 3 | 7 | 0.3     | 0.2    |
-| Image 3 |	H	| 67% | 0 | 1 | 3 | 8 | 0.2727  | 0.2    |
-| Image 5 |	P	| 62% | 1 | 0 | 4 | 8 | 0.3333  | 0.2666 |
-| Image 2 |	E	| 54% | 1 | 0 | 5 | 8 | 0.3846  | 0.3333 |
-| Image 7 |	X	| 48% | 1 | 0 | 6 | 8 | 0.4285  | 0.4    |
+| Image 5 |	R	| 95% | 1 | 0 | 1 | 0 | 1 / 1 = 1 | 1 / 15 = 0.0666 |
+| Image 7 |	Y	| 95% | 0 | 1 | 1 | 1 | 1/ 2 = 0.5 | 1 / 15 = 0.0666 |
+| Image 3 |	J	| 91% | 1 | 0 | 2 | 1 | 2 / 3 = 0.6666 | 2 / 15 = 0.1333 |
+| Image 1 | A | 88% | 0 | 1 | 2 | 2 | 2 / 4 = 0.5 | 2 / 15 = 0.1333 |
+| Image 6 |	U	| 84% | 0 | 1 | 2 | 3 | 2 / 5 = 0.4 | 2 / 15 = 0.1333 |
+| Image 1 |	C	| 80% | 0 | 1 | 2 | 4 | 2 / 6 = 0.3333 | 2 / 15 =0.1333 |
+| Image 4 |	M	| 78% | 0 | 1 | 2 | 5 | 2 / 7 =0.2857 | 2 / 15 = 0.1333 |
+| Image 2 |	F	| 74% | 0 | 1 | 2 | 6 | 2/ 8 = 0.25 | 2 / 15 = 0.1333 |
+| Image 2 |	D	| 71% | 0 | 1 | 2 | 7 | 2 / 9 = 0.2222 | 2 / 15 = 0.1333 |
+| Image 1 | B | 70% | 1 | 0 | 3 | 7 | 3 / 10 = 0.3 | 3 / 15 = 0.2 |
+| Image 3 |	H	| 67% | 0 | 1 | 3 | 8 | 3 / 11 = 0.2727 | 3 / 15 = 0.2 |
+| Image 5 |	P	| 62% | 1 | 0 | 4 | 8 | 4 / 12 = 0.3333 | 4 / 15 = 0.2666 |
+| Image 2 |	E	| 54% | 1 | 0 | 5 | 8 | 5 / 13 = 0.3846 | 5 / 15 = 0.3333 |
+| Image 7 |	X	| 48% | 1 | 0 | 6 | 8 | 6 / 13 = 0.4285 | 6 / 15 = 0.4 |
 | Image 4 |	N	| 45% | 0 | 1 | 6 | 9 | 0.7     | 0.4    |
 | Image 6 |	T	| 45% | 0 | 1 | 6 | 10 | 0.375  | 0.4    |
 | Image 3 |	K	| 44% | 0 | 1 | 6 | 11 | 0.3529 | 0.4    |
@@ -215,17 +217,17 @@ The Precision x Recall curve is plotted by calculating the precision and recall 
 | Image 3 |	I	| 38% | 0 | 1 | 6 | 14 | 0.3    | 0.4    |
 | Image 4 |	L	| 35% | 0 | 1 | 6 | 15 | 0.2857 | 0.4    |
 | Image 5 |	S	| 23% | 0 | 1 | 6 | 16 | 0.2727 | 0.4    |
-| Image 3 |	G	| 18% | 1 | 0 | 7 | 16 | 0.3043 | 0.4666 |
-| Image 4 |	O	| 14% | 0 | 1 | 7 | 17 | 0.2916 | 0.4666 |
+| Image 3 |	G	| 18% | 1 | 0 | 7 | 16 | 7 / 23 = 0.3043 | 7 / 15 = 0.4666 |
+| Image 4 |	O	| 14% | 0 | 1 | 7 | 17 | 4 / 24 = 0.2916 | 7 / 15 = 0.4666 |
 --->
- 
+
  Plotting the precision and recall values we have the following *Precision x Recall curve*:
- 
+
  <!--- Precision x Recall graph --->
 <p align="center">
 <img src="https://github.com/rafaelpadilla/Object-Detection-Metrics/blob/master/aux_images/precision_recall_example_1_v2.png" align="center"/>
 </p>
- 
+
 As mentioned before, there are two different ways to measure the interpolted average precision: **11-point interpolation** and **interpolating all points**. Below we make a comparisson between them:
 
 #### Calculating the 11-point interpolation
@@ -252,9 +254,9 @@ By interpolating all points, the Average Precision (AP) can be interpreted as an
 <p align="center">
 <img src="https://github.com/rafaelpadilla/Object-Detection-Metrics/blob/master/aux_images/interpolated_precision_v2.png" align="center"/>
 </p>
-  
+
 Looking at the plot above, we can divide the AUC into 4 areas (A1, A2, A3 and A4):
-  
+
 <!--- interpolated precision AUC --->
 <p align="center">
 <img src="https://github.com/rafaelpadilla/Object-Detection-Metrics/blob/master/aux_images/interpolated_precision-AUC_v2.png" align="center"/>
@@ -263,13 +265,13 @@ Looking at the plot above, we can divide the AUC into 4 areas (A1, A2, A3 and A4
 Calculating the total area, we have the AP:  
 
 ![](http://latex.codecogs.com/gif.latex?AP%20%3D%20A1%20&plus;%20A2%20&plus;%20A3%20&plus;%20A4)  
-  
+
 ![](http://latex.codecogs.com/gif.latex?%5Ctext%7Bwith%3A%7D)  
 ![](http://latex.codecogs.com/gif.latex?A1%20%3D%20%280.0666-0%29%5Ctimes1%20%3D%5Cmathbf%7B0.0666%7D)  
 ![](http://latex.codecogs.com/gif.latex?A2%20%3D%20%280.1333-0.0666%29%5Ctimes0.6666%3D%5Cmathbf%7B0.04446222%7D)  
 ![](http://latex.codecogs.com/gif.latex?A3%20%3D%20%280.4-0.1333%29%5Ctimes0.4285%20%3D%5Cmathbf%7B0.11428095%7D)  
 ![](http://latex.codecogs.com/gif.latex?A4%20%3D%20%280.4666-0.4%29%5Ctimes0.3043%20%3D%5Cmathbf%7B0.02026638%7D)  
-   
+
 ![](http://latex.codecogs.com/gif.latex?AP%20%3D%200.0666&plus;0.04446222&plus;0.11428095&plus;0.02026638)  
 ![](http://latex.codecogs.com/gif.latex?AP%20%3D%200.24560955)  
 ![](http://latex.codecogs.com/gif.latex?AP%20%3D%20%5Cmathbf%7B24.56%5C%25%7D)  
@@ -306,7 +308,8 @@ Follow the steps below to start evaluating your detections:
   person 36 111 198 416
   person 91 42 338 500
   ```
-    
+  
+
 If you prefer, you can also have your bounding boxes in the format: `<class_name> <left> <top> <width> <height>` (see here [**\***](#asterisk) how to use it). In this case, your "2008_000034.txt" would be represented as:
   ```
   bottle 6 234 39 128
@@ -337,22 +340,22 @@ Optional arguments:
 
 | Argument &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Description | Example | Default |
 |:-------------:|:-----------:|:-----------:|:-----------:|
-| `-h`,<br>`--help ` |	show help message | `python pascalvoc.py -h` | |  
-|  `-v`,<br>`--version` | check version | `python pascalvoc.py -v` | |  
-| `-gt`,<br>`--gtfolder` | folder that contains the ground truth bounding boxes files | `python pascalvoc.py -gt /home/whatever/my_groundtruths/` | `/Object-Detection-Metrics/groundtruths`|  
-| `-det`,<br>`--detfolder` | folder that contains your detected bounding boxes files | `python pascalvoc.py -det /home/whatever/my_detections/` | `/Object-Detection-Metrics/detections/`|  
-| `-t`,<br>`--threshold` | IOU thershold that tells if a detection is TP or FP | `python pascalvoc.py -t 0.75` | `0.50` |  
+| `-h`,<br>`--help ` |	show help message | `python pascalvoc.py -h` | |
+|  `-v`,<br>`--version` | check version | `python pascalvoc.py -v` | |
+| `-gt`,<br>`--gtfolder` | folder that contains the ground truth bounding boxes files | `python pascalvoc.py -gt /home/whatever/my_groundtruths/` | `/Object-Detection-Metrics/groundtruths`|
+| `-det`,<br>`--detfolder` | folder that contains your detected bounding boxes files | `python pascalvoc.py -det /home/whatever/my_detections/` | `/Object-Detection-Metrics/detections/`|
+| `-t`,<br>`--threshold` | IOU thershold that tells if a detection is TP or FP | `python pascalvoc.py -t 0.75` | `0.50` |
 | `-gtformat` | format of the coordinates of the ground truth bounding boxes [**\***](#asterisk) | `python pascalvoc.py -gtformat xyrb` | `xywh` |
-| `-detformat` | format of the coordinates of the detected bounding boxes [**\***](#asterisk) | `python pascalvoc.py -detformat xyrb` | `xywh` | |  
-| `-gtcoords` | reference of the ground truth bounding bounding box coordinates.<br>If the annotated coordinates are relative to the image size (as used in YOLO), set it to `rel`.<br>If the coordinates are absolute values, not depending to the image size, set it to `abs` |  `python pascalvoc.py -gtcoords rel` | `abs` |  
-| `-detcoords` | reference of the detected bounding bounding box coordinates.<br>If the coordinates are relative to the image size (as used in YOLO), set it to `rel`.<br>If the coordinates are absolute values, not depending to the image size, set it to `abs` | `python pascalvoc.py -detcoords rel` | `abs` |  
-| `-imgsize ` | image size in the format `width,height` <int,int>.<br>Required if `-gtcoords` or `-detcoords` is set to `rel` | `python pascalvoc.py -imgsize 600,400` |  
-| `-sp`,<br>`--savepath` | folder where the plots are saved | `python pascalvoc.py -sp /home/whatever/my_results/` | `Object-Detection-Metrics/results/` |  
-| `-np`,<br>`--noplot` | if present no plot is shown during execution | `python pascalvoc.py -np` | not presented.<br>Therefore, plots are shown |  
+| `-detformat` | format of the coordinates of the detected bounding boxes [**\***](#asterisk) | `python pascalvoc.py -detformat xyrb` | `xywh` | |
+| `-gtcoords` | reference of the ground truth bounding bounding box coordinates.<br>If the annotated coordinates are relative to the image size (as used in YOLO), set it to `rel`.<br>If the coordinates are absolute values, not depending to the image size, set it to `abs` |  `python pascalvoc.py -gtcoords rel` | `abs` |
+| `-detcoords` | reference of the detected bounding bounding box coordinates.<br>If the coordinates are relative to the image size (as used in YOLO), set it to `rel`.<br>If the coordinates are absolute values, not depending to the image size, set it to `abs` | `python pascalvoc.py -detcoords rel` | `abs` |
+| `-imgsize ` | image size in the format `width,height` <int,int>.<br>Required if `-gtcoords` or `-detcoords` is set to `rel` | `python pascalvoc.py -imgsize 600,400` |
+| `-sp`,<br>`--savepath` | folder where the plots are saved | `python pascalvoc.py -sp /home/whatever/my_results/` | `Object-Detection-Metrics/results/` |
+| `-np`,<br>`--noplot` | if present no plot is shown during execution | `python pascalvoc.py -np` | not presented.<br>Therefore, plots are shown |
 
 <a name="asterisk"> </a>
 (**\***) set `-gtformat xywh` and/or `-detformat xywh` if format is `<left> <top> <width> <height>`. Set to `-gtformat xyrb` and/or `-detformat xyrb`  if format is `<left> <top> <right> <bottom>`.
-  
+
 ## References
 
 * The Relationship Between Precision-Recall and ROC Curves (Jesse Davis and Mark Goadrich)
