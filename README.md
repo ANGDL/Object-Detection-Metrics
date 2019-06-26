@@ -152,6 +152,10 @@ The following table shows the bounding boxes with their corresponding confidence
 
 <!--- Table 1 --->
 
+<p align="center">
+<img src="aux_images/table_1_v2.png" align="center"/></p>
+
+<!--- 
 
 | Images | Detections | Confidences | TP or FP |
 |:------:|:----------:|:-----------:|:--------:|
@@ -179,7 +183,7 @@ The following table shows the bounding boxes with their corresponding confidence
 | Image 6 |	V	| 43% | FP |
 | Image 7 |	X	| 48% | TP |
 | Image 7 |	Y	| 95% | FP |
-
+ --->
 
 In some images there are more than one detection overlapping a ground truth (Images 2, 3, 4, 5, 6 and 7). For those cases the detection with the highest IOU is considered TP and the others are considered FP. This rule is applied by the PASCAL VOC 2012 metric: "e.g. 5 detections (TP) of a single object is counted as 1 correct detection and 4 false detections”.
 
@@ -213,7 +217,9 @@ The Precision x Recall curve is plotted by calculating the precision and recall 
 | Image 5 |	S	| 23% | 0 | 1 | 6 | 16 | 0.2727 | 0.4    |
 | Image 3 |	G	| 18% | 1 | 0 | 7 | 16 | 7 / 23 = 0.3043 | 7 / 15 = 0.4666 |
 | Image 4 |	O	| 14% | 0 | 1 | 7 | 17 | 4 / 24 = 0.2916 | 7 / 15 = 0.4666 |
- Plotting the precision and recall values we have the following *Precision x Recall curve*:
+
+
+Plotting the precision and recall values we have the following *Precision x Recall curve*:
 
  <!--- Precision x Recall graph --->
 <p align="center">
