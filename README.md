@@ -52,7 +52,7 @@ The image below illustrates the IOU between a ground truth bounding box (in gree
 <!--- IOU --->
 
 <p align="center">
-<img src="https://github.com/rafaelpadilla/Object-Detection-Metrics/blob/master/aux_images/iou.png" align="center"/></p>
+<img src="aux_images/iou.png" align="center"/></p>
 
 ### True Positive, False Positive, False Negative and True Negative  
 
@@ -144,17 +144,14 @@ An example helps us understand better the concept of the interpolated average pr
 
 <!--- Image samples 1 --->
 <p align="center">
-<img src="https://github.com/rafaelpadilla/Object-Detection-Metrics/blob/master/aux_images/samples_1_v2.png" align="center"/></p>
+<img src="aux_images/samples_1_v2.png" align="center"/></p>
 
 There are 7 images with 15 ground truth objects representented by the green bounding boxes and 24 detected objects represented by the red bounding boxes. Each detected object has a confidence level and is identified by a letter (A,B,...,Y).  
 
 The following table shows the bounding boxes with their corresponding confidences. The last column identifies the detections as TP or FP. In this example a TP is considered if IOU ![](http://latex.codecogs.com/gif.latex?%5Cgeq) 30%, otherwise it is a FP. By looking at the images above we can roughly tell if the detections are TP or FP.
 
 <!--- Table 1 --->
-<p align="center">
-<img src="https://github.com/rafaelpadilla/Object-Detection-Metrics/blob/master/aux_images/table_1_v2.png" align="center"/></p>
 
-<!---
 
 | Images | Detections | Confidences | TP or FP |
 |:------:|:----------:|:-----------:|:--------:|
@@ -182,17 +179,14 @@ The following table shows the bounding boxes with their corresponding confidence
 | Image 6 |	V	| 43% | FP |
 | Image 7 |	X	| 48% | TP |
 | Image 7 |	Y	| 95% | FP |
---->
+
 
 In some images there are more than one detection overlapping a ground truth (Images 2, 3, 4, 5, 6 and 7). For those cases the detection with the highest IOU is considered TP and the others are considered FP. This rule is applied by the PASCAL VOC 2012 metric: "e.g. 5 detections (TP) of a single object is counted as 1 correct detection and 4 false detections”.
 
 The Precision x Recall curve is plotted by calculating the precision and recall values of the accumulated TP or FP detections. For this, first we need to order the detections by their confidences, then we calculate the precision and recall for each accumulated detection as shown in the table below: 
 
 <!--- Table 2 --->
-<p align="center">
-<img src="https://github.com/rafaelpadilla/Object-Detection-Metrics/blob/master/aux_images/table_2_v2.png" align="center"/></p>
 
-<!---
 | Images | Detections | Confidences |  TP | FP | Acc TP | Acc FP | Precision | Recall |
 |:------:|:----------:|:-----------:|:---:|:--:|:------:|:------:|:---------:|:------:|
 | Image 5 |	R	| 95% | 1 | 0 | 1 | 0 | 1 / 1 = 1 | 1 / 15 = 0.0666 |
@@ -219,13 +213,11 @@ The Precision x Recall curve is plotted by calculating the precision and recall 
 | Image 5 |	S	| 23% | 0 | 1 | 6 | 16 | 0.2727 | 0.4    |
 | Image 3 |	G	| 18% | 1 | 0 | 7 | 16 | 7 / 23 = 0.3043 | 7 / 15 = 0.4666 |
 | Image 4 |	O	| 14% | 0 | 1 | 7 | 17 | 4 / 24 = 0.2916 | 7 / 15 = 0.4666 |
---->
-
  Plotting the precision and recall values we have the following *Precision x Recall curve*:
 
  <!--- Precision x Recall graph --->
 <p align="center">
-<img src="https://github.com/rafaelpadilla/Object-Detection-Metrics/blob/master/aux_images/precision_recall_example_1_v2.png" align="center"/>
+<img src="aux_images/precision_recall_example_1_v2.png" align="center"/>
 </p>
 
 As mentioned before, there are two different ways to measure the interpolted average precision: **11-point interpolation** and **interpolating all points**. Below we make a comparisson between them:
@@ -236,7 +228,7 @@ The idea of the 11-point interpolated average precision is to average the precis
 
 <!--- interpolated precision curve --->
 <p align="center">
-<img src="https://github.com/rafaelpadilla/Object-Detection-Metrics/blob/master/aux_images/11-pointInterpolation.png" align="center"/>
+<img src="aux_images/11-pointInterpolation.png" align="center"/>
 </p>
 
 By applying the 11-point interpolation, we have:  
@@ -252,14 +244,14 @@ By interpolating all points, the Average Precision (AP) can be interpreted as an
     
 <!--- interpolated precision AUC --->
 <p align="center">
-<img src="https://github.com/rafaelpadilla/Object-Detection-Metrics/blob/master/aux_images/interpolated_precision_v2.png" align="center"/>
+<img src="aux_images/interpolated_precision_v2.png" align="center"/>
 </p>
 
 Looking at the plot above, we can divide the AUC into 4 areas (A1, A2, A3 and A4):
 
 <!--- interpolated precision AUC --->
 <p align="center">
-<img src="https://github.com/rafaelpadilla/Object-Detection-Metrics/blob/master/aux_images/interpolated_precision-AUC_v2.png" align="center"/>
+<img src="aux_images/interpolated_precision-AUC_v2.png" align="center"/>
 </p>
 
 Calculating the total area, we have the AP:  
